@@ -107,6 +107,8 @@ body {
  * Css grid variables
  */
 
+/* stylelint-disable number-max-precision */
+
 .teaser {
   overflow: hidden;
   font-family: 'EconSans', Tahoma, sans-serif;
