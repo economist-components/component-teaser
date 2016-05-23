@@ -1,7 +1,7 @@
 @import '@economist/component-typography';
 @import '@economist/component-palette';
 @import '@economist/component-grid';
-@custom-media --viewport-big (width >= 44rem);
+@import '@economist/component-picture';
 
 .teaser {
   overflow: hidden;
@@ -10,19 +10,13 @@
 }
 
 .teaser__link {
-  display: block;  /* not an inline element either. */
+  display: block;
   text-decoration: none;
-}
-
-.teaser__group-text {
-  display: flex;
-  flex-direction: column;
 }
 
 .teaser__title {
   margin: 0;
   margin-bottom: var(--grid-spacing-rabbit);
-  order: 3;
   color: var(--teaser-color-title, var(--color-beijing));
   font-family: var(--teaser__title-font-family, var(--fontfamily-serif));
   font-size: var(--text-size-step-2);
@@ -34,18 +28,14 @@
 .teaser__section {
   margin: 0;
   margin-bottom: var(--grid-spacing-mouse);
-  order: 1;
   color: var(--teaser-color-section, var(--color-economist));
   font-size: var(--text-size-step--2);
   font-weight: 300;
   line-height: var(--text-line-height-sans-on-step--2);
-  text-transform: uppercase;
 }
 
 .teaser__flytitle {
-  margin: 0;
   margin-bottom: var(--grid-spacing-mouse);
-  order: 2;
   color: var(--teaser-color-flytitle, var(--color-economist));
   font-size: var(--text-size-step--1);
   font-weight: normal;
@@ -54,7 +44,6 @@
 
 .teaser__text {
   margin-bottom: var(--grid-spacing-rabbit);
-  order: 4;
   color: var(--teaser-color-text, var(--color-beijing));
   font-size: var(--text-size-step--2);
   font-weight: 300;
@@ -62,46 +51,9 @@
 }
 
 .teaser__datetime {
-  order: 5;
   color: var(--teaser-color-datetime, var(--color-moscow));
   font-size: var(--text-size-step--4);
   font-weight: 300;
   letter-spacing: var(--text-letter-spacing-sans-light-on-step--2);
   line-height: var(--text-line-height-basic);
-}
-
-.teaser__datetime::before {
-  content: '';
-  display: block;
-  width: 3rem;
-  height: 0.1rem;
-  margin-bottom: var(--grid-spacing-hedgehog);
-  background-color: var(--teaser-background-color-datetime, var(--color-berlin));
-}
-
-.teaser__img {
-  display: block;  /* Makes sure that the image doesn't have an em box. */
-  width: 100%;
-  margin-bottom: var(--grid-spacing-sheep);
-  border: none;
-}
-
-.teaser__group-image {
-  width: var(--teaser-img-width, 10em);
-}
-
-.teaser__group-image--empty {
-  display: none;
-}
-
-@media (--viewport-big) {
-  .teaser__group-image {
-    float: left;
-    margin-right: var(--grid-gutter-m);
-  }
-  .teaser__group-image--empty {
-    visibility: hidden;
-    display: block;
-    min-height: var(--grid-gutter-m, 1px);  /* Because if its height is zero it doesn't push group-text to the right */
-  }
 }
