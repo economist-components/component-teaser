@@ -102,10 +102,7 @@
     ]
   },
   "dependencies": {
-    "@economist/component-grid": "^1.3.3",
-    "@economist/component-palette": "^1.5.1",
     "@economist/component-picture": "^1.3.0",
-    "@economist/component-typography": "^3.1.5",
     "classnames": "^2.2.5",
     "moment": "^2.13.0",
     "react": "^0.14.8||^15.0.0"
