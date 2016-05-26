@@ -1,15 +1,14 @@
 import React from 'react';
-import Teaser, {
-  TeaserImage,
-  TeaserSection,
-  TeaserFlyTitle,
-  TeaserTitle,
-  TeaserText,
-  TeaserLink,
-  TeaserPublishDate,
-} from './';
+import Teaser from './';
+import TeaserFlyTitle from './teaser-flytitle';
+import TeaserImage from './teaser-image';
+import TeaserLink from './teaser-link';
+import TeaserPublishDate from './teaser-publish-date';
+import TeaserSection from './teaser-section';
+import TeaserText from './teaser-text';
+import TeaserTitle from './teaser-title';
 
-// const enableMeta = true;
+const enableMeta = true;
 export default (
 <Teaser>
   <TeaserLink href="http://www.someurl.com">
@@ -21,7 +20,7 @@ export default (
       alt="this is an image"
     />
     <TeaserSection>International</TeaserSection>
-    <TeaserFlyTitle>The UN, religion and development</TeaserFlyTitle>
+    <TeaserFlyTitle meta={enableMeta}>The UN, religion and development</TeaserFlyTitle>
     <TeaserTitle>Faith and secular global bodies learn to live together</TeaserTitle>
     <TeaserPublishDate dateTime={new Date()} />
     <TeaserText>
