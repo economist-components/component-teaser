@@ -128,7 +128,7 @@ describe('TeaserPublishDate', () => {
   it('renders a React element', () => {
     React.isValidElement(
       <TeaserPublishDate
-        dateTime="Thu May 26 2016 15:47:10 GMT+0100 (BST)"
+        dateTime="2015-11-02T14:00:00.625Z"
       />
     ).should.equal(true);
   });
@@ -139,7 +139,7 @@ describe('TeaserPublishDate', () => {
     beforeEach(() => {
       rendered = mount(
         <TeaserPublishDate
-          dateTime="Thu May 26 2016 15:47:10 GMT+0100 (BST)"
+          dateTime="2015-11-02T14:00:00.625Z"
           format="DD MM YY"
         />
       );
@@ -149,11 +149,10 @@ describe('TeaserPublishDate', () => {
     it('renders a <time /> tag', () => {
       teaserPubDate.should.have.tagName('time');
       teaserPubDate.should.have.attr('itemprop', 'datePublished dateModified');
-      teaserPubDate.should.have.attr('dateTime', 'Thu May 26 2016 15:47:10 GMT+0100 (BST)');
     });
 
     it('accepts a custom date format', () => {
-      teaserPubDate.should.have.text('26 05 16');
+      teaserPubDate.should.have.text('02 11 15');
     });
   });
 });
@@ -247,7 +246,7 @@ describe('Teaser', () => {
           alt="this is an image"
         />
         <TeaserTitle>Foo</TeaserTitle>
-        <TeaserPublishDate dateTime="Thu May 26 2016 15:47:10 GMT+0100 (BST)" />
+        <TeaserPublishDate dateTime="2015-11-02T14:00:00.625Z" />
       </Teaser>
     ).should.equal(true);
   });
@@ -270,7 +269,7 @@ describe('Teaser', () => {
             alt="this is an image"
           />
           <TeaserTitle>Foo</TeaserTitle>
-          <TeaserPublishDate dateTime="Thu May 26 2016 15:47:10 GMT+0100 (BST)" />
+          <TeaserPublishDate dateTime="2015-11-02T14:00:00.625Z" />
         </Teaser>
       );
       teaser = rendered.find('.teaser');
@@ -306,7 +305,7 @@ describe('Teaser', () => {
       );
 
       teaser.should.contain(
-        <TeaserPublishDate dateTime="Thu May 26 2016 15:47:10 GMT+0100 (BST)" />
+        <TeaserPublishDate dateTime="2015-11-02T14:00:00.625Z" />
       );
     });
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export default function TeaserPublishDate({
   className,
@@ -9,7 +9,7 @@ export default function TeaserPublishDate({
   meta = false,
 }) {
   dateTime = new Date(dateTime);
-  const formatedDate = moment(dateTime).format(format);
+  const formatedDate = moment(dateTime).tz('Europe/London').format(format);
   if (meta) {
     return (
       <meta

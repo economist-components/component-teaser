@@ -104,7 +104,7 @@
   "dependencies": {
     "@economist/component-picture": "^1.3.0",
     "classnames": "^2.2.5",
-    "moment": "^2.13.0",
+    "moment-timezone": "^0.5.4",
     "react": "^0.14.8||^15.0.0"
   },
   "devDependencies": {
