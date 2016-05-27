@@ -1,127 +1,314 @@
 import 'babel-polyfill';
-import React from 'react';
 import Teaser from '../src';
+import TeaserFlyTitle from '../src/teaser-flytitle';
+import TeaserImage from '../src/teaser-image';
+import TeaserLink from '../src/teaser-link';
+import TeaserPublishDate from '../src/teaser-publish-date';
+import TeaserSection from '../src/teaser-section';
+import TeaserText from '../src/teaser-text';
+import TeaserTitle from '../src/teaser-title';
+import React from 'react';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
-chai.should();
-chai.use(chaiEnzyme());
+chai.use(chaiEnzyme()).should();
 
-describe('A teaser', () => {
-  describe('it\'s a React component', () => {
-    it('is compatible with React.Component', () => {
-      Teaser.should.be.a('function').and.respondTo('render');
+describe('TeaserFlyTitle', () => {
+  it('renders a React element', () => {
+    React.isValidElement(<TeaserFlyTitle />).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaserFlytitle = null;
+    beforeEach(() => {
+      const enableMeta = true;
+      rendered = mount(
+        <TeaserFlyTitle meta={enableMeta}>
+          Foo
+        </TeaserFlyTitle>
+      );
+      teaserFlytitle = rendered.find('.teaser__flytitle');
     });
-    it('it\'s renders a React element', () => {
-      React.isValidElement(
-        <Teaser
-          title="Required"
-        />).should.equal(true);
+
+    it('can render as a <meta /> tag', () => {
+      teaserFlytitle.should.have.tagName('meta');
+      teaserFlytitle.should.have.attr('itemprop', 'alternativeHeadline');
+      teaserFlytitle.should.have.attr('content', 'Foo');
     });
   });
-  describe('Expose a set of propTypes', () => {
-    it('it renders a section', () => {
-      const teaser = mount(
-        <Teaser
-          section="section"
-          title="Required"
+});
+
+describe('TeaserImage', () => {
+  it('renders a React element', () => {
+    React.isValidElement(
+      <TeaserImage
+        sources={[
+          { url: 'https://placehold.it/240x135', width: 240, height: 135, dppx: 1 },
+        ]}
+        alt="Foo"
+      />
+    ).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaserImage = null;
+    beforeEach(() => {
+      rendered = mount(
+        <TeaserImage
+          sources={[
+            { url: 'https://placehold.it/240x135', width: 240, height: 135, dppx: 1 },
+          ]}
+          alt="Foo"
         />
       );
-      teaser.should.have.exactly(1).descendants('.teaser__section');
-      const sectionNode = teaser.find('.teaser__section');
-      sectionNode.should.have.text('section');
-      sectionNode.should.have.tagName('h3');
+      teaserImage = rendered.find('.teaser__image');
     });
-    it('it renders a flytitle', () => {
-      const teaser = mount(
-        <Teaser
-          flyTitle="flytitle"
-          title="Required"
+
+    it('should contain <img /> tag in the Picture component', () => {
+      teaserImage.should.contain(
+        <img
+          alt="Foo"
+          src="https://placehold.it/240x135"
+          itemProp="image"
+          className="picture__image"
         />
       );
-      teaser.should.have.exactly(1).descendants('.teaser__flytitle');
-      const flyTitleNode = teaser.find('.teaser__flytitle');
-      flyTitleNode.should.have.text('flytitle');
-      flyTitleNode.should.have.tagName('h2');
     });
-    it('it renders a title', () => {
-      const teaser = mount(<Teaser title="title" />);
-      teaser.should.have.exactly(1).descendants('.teaser__title');
-      const titleNode = teaser.find('.teaser__title');
-      titleNode.should.have.text('title');
-      titleNode.should.have.tagName('h1');
+  });
+});
+
+describe('TeaserLink', () => {
+  it('renders a React element', () => {
+    React.isValidElement(<TeaserLink />).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaserLink = null;
+    beforeEach(() => {
+      const enableMeta = true;
+      rendered = mount(
+        <TeaserLink
+          meta={enableMeta}
+          href="foo/bar"
+          className="teaser__link--foo"
+        >
+          <div className="foo" />
+        </TeaserLink>
+      );
+      teaserLink = rendered.find('.teaser__wrapper');
     });
-    it('it renders a dateTime', () => {
-      const today = new Date();
-      function dateFormat(date) {
-        return date.toString();
-      }
-      const teaser = mount(
-        <Teaser
-          dateTime={today}
-          title="Required"
-          dateFormat={dateFormat}
+
+    it('renders a top level div.teaser', () => {
+      teaserLink.should.have.tagName('div');
+      teaserLink.should.have.className('teaser__wrapper');
+    });
+
+    it('accepts a custom className', () => {
+      teaserLink.should.have.className('teaser__link--foo');
+    });
+
+    it('can render as a <meta /> tag', () => {
+      teaserLink.find('.teaser__link').should.have.tagName('link');
+      teaserLink.find('.teaser__link').should.have.attr('itemprop', 'url');
+      teaserLink.find('.teaser__link').should.have.attr('href', 'foo/bar');
+    });
+
+    it('renders children', () => {
+      teaserLink.should.contain(
+        <div className="foo" />
+      );
+    });
+  });
+});
+
+describe('TeaserPublishDate', () => {
+  it('renders a React element', () => {
+    React.isValidElement(
+      <TeaserPublishDate
+        dateTime="2015-11-02T14:00:00.625Z"
+      />
+    ).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaserPubDate = null;
+    beforeEach(() => {
+      rendered = mount(
+        <TeaserPublishDate
+          dateTime="2015-11-02T14:00:00.625Z"
+          format="DD MM YY"
         />
       );
-      teaser.should.have.exactly(1).descendants('.teaser__datetime');
-      const dateTimeNode = teaser.find('.teaser__datetime');
-      dateTimeNode.should.have.text(today.toString());
-      dateTimeNode.should.have.tagName('time');
-      dateTimeNode.should.have.attr('datetime', today.toString());
+      teaserPubDate = rendered.find('.teaser__datetime');
     });
-    it('renders a dateString and an ISO timestamp', () => {
-      const today = 'someday';
-      const todayISO = 'somedayISO';
-      const teaser = mount(
+
+    it('renders a <time /> tag', () => {
+      teaserPubDate.should.have.tagName('time');
+      teaserPubDate.should.have.attr('itemprop', 'datePublished dateModified');
+    });
+
+    it('accepts a custom date format', () => {
+      teaserPubDate.should.have.text('02 11 15');
+    });
+  });
+});
+
+describe('TeaserSection', () => {
+  it('renders a React element', () => {
+    React.isValidElement(<TeaserSection />).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaserSection = null;
+    beforeEach(() => {
+      const enableMeta = true;
+      rendered = mount(
+        <TeaserSection meta={enableMeta}>
+          Foo
+        </TeaserSection>
+      );
+      teaserSection = rendered.find('.teaser__section');
+    });
+
+    it('can render as a <meta /> tag', () => {
+      teaserSection.should.have.tagName('meta');
+      teaserSection.should.have.attr('itemprop', 'articleSection');
+      teaserSection.should.have.attr('content', 'Foo');
+    });
+  });
+});
+
+describe('TeaserText', () => {
+  it('renders a React element', () => {
+    React.isValidElement(<TeaserText />).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaserText = null;
+    beforeEach(() => {
+      const enableMeta = true;
+      rendered = mount(
+        <TeaserText meta={enableMeta}>
+          Foo
+        </TeaserText>
+      );
+      teaserText = rendered.find('.teaser__text');
+    });
+
+    it('can render as a <meta /> tag', () => {
+      teaserText.should.have.tagName('meta');
+      teaserText.should.have.attr('itemprop', 'description');
+      teaserText.should.have.attr('content', 'Foo');
+    });
+  });
+});
+
+describe('TeaserTitle', () => {
+  it('renders a React element', () => {
+    React.isValidElement(<TeaserTitle />).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaserTitle = null;
+    beforeEach(() => {
+      const enableMeta = true;
+      rendered = mount(
+        <TeaserTitle meta={enableMeta}>
+          Foo
+        </TeaserTitle>
+      );
+      teaserTitle = rendered.find('.teaser__title');
+    });
+
+    it('can render as a <meta /> tag', () => {
+      teaserTitle.should.have.tagName('meta');
+      teaserTitle.should.have.attr('itemprop', 'headline');
+      teaserTitle.should.have.attr('content', 'Foo');
+    });
+  });
+});
+
+describe('Teaser', () => {
+  it('renders a React element', () => {
+    React.isValidElement(
+      <Teaser>
+        <TeaserImage
+          sources={[
+            { url: 'https://placehold.it/240x135', width: 240, height: 135, dppx: 1 },
+          ]}
+          alt="this is an image"
+        />
+        <TeaserTitle>Foo</TeaserTitle>
+        <TeaserPublishDate dateTime="2015-11-02T14:00:00.625Z" />
+      </Teaser>
+    ).should.equal(true);
+  });
+
+  describe('Rendering', () => {
+    let rendered = null;
+    let teaser = null;
+    beforeEach(() => {
+      rendered = mount(
         <Teaser
-          title="Required"
-          dateString={today}
-          timestampISO={todayISO}
+          className="teaser--foo"
+          itemProp="foo"
+          itemType="bar"
+          publisher="baz"
+          author="bing"
+        >
+          <TeaserImage
+            sources={[
+              { url: 'https://placehold.it/240x135', width: 240, height: 135, dppx: 1 },
+            ]}
+            alt="this is an image"
+          />
+          <TeaserTitle>Foo</TeaserTitle>
+          <TeaserPublishDate dateTime="2015-11-02T14:00:00.625Z" />
+        </Teaser>
+      );
+      teaser = rendered.find('.teaser');
+    });
+
+    it('renders a top level div.teaser', () => {
+      teaser.should.have.tagName('article');
+      teaser.should.have.className('teaser');
+    });
+
+    it('accepts a custom className', () => {
+      teaser.should.have.className('teaser--foo');
+    });
+
+    it('accepts a custom schema.org items', () => {
+      teaser.should.have.attr('itemprop', 'foo');
+      teaser.should.have.attr('itemtype', 'bar');
+      teaser.find('.teaser__publisher').should.have.attr('content', 'baz');
+      teaser.find('.teaser__author').should.have.attr('content', 'bing');
+    });
+
+    it('renders children', () => {
+      teaser.should.contain(
+        <TeaserImage
+          sources={[
+            { url: 'https://placehold.it/240x135', width: 240, height: 135, dppx: 1 },
+          ]}
+          alt="this is an image"
         />
       );
-      teaser.should.have.exactly(1).descendants('.teaser__datetime');
-      const dateTimeNode = teaser.find('.teaser__datetime');
-      dateTimeNode.should.have.tagName('time');
-      dateTimeNode.should.have.text('someday');
-      dateTimeNode.should.have.attr('datetime', 'somedayISO');
-    });
-    it('it renders a text', () => {
-      const teaser = mount(
-        <Teaser
-          text="Teaser text"
-          title="Required"
-        />
+
+      teaser.should.contain(
+        <TeaserTitle>Foo</TeaserTitle>
       );
-      teaser.should.have.exactly(1).descendants('.teaser__text');
-      const textNode = teaser.find('.teaser__text');
-      textNode.should.have.text('Teaser text');
-      textNode.should.have.tagName('div');
-    });
-    it('it renders an image', () => {
-      const img = {
-        src: '//cdn.static-economist.com/sites/all/themes/econfinal/images/svg/logo.svg',
-        alt: 'Example',
-      };
-      const teaser = mount(
-        <Teaser image={img}
-          title="Required"
-        />);
-      teaser.should.have.exactly(1).descendants('.teaser__img');
-      const imgNode = teaser.find('.teaser__img');
-      imgNode.should.have.tagName('img');
-      imgNode.should.have.attr('src', img.src);
-      imgNode.should.have.attr('alt', img.alt);
-    });
-    it('it renders a link', () => {
-      const teaser = mount(
-        <Teaser
-          link={{ href: 'http://www.economist.com' }}
-          title="Required"
-        />);
-      teaser.should.have.exactly(1).descendants('.teaser__link');
-      const linkNode = teaser.find('.teaser__link');
-      linkNode.should.have.attr('href', 'http://www.economist.com');
-      linkNode.should.have.tagName('a');
+
+      teaser.should.contain(
+        <TeaserPublishDate dateTime="2015-11-02T14:00:00.625Z" />
+      );
     });
   });
 });

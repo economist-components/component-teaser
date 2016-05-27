@@ -1,17 +1,1 @@
 @import './index.css';
-
-.teaser {
-  font-family: var(--fontfamily-sans);
-  font-size: 18px;
-  line-height: var(--text-line-height-sans-on-step-0);
-}
-
-.example-extra {
-  order: 4;
-}
-
-@media screen and (min-width: 800px) {
-  .teaser {
-    font-size: 20px;
-  }
-}

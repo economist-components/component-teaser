@@ -1,30 +1,37 @@
 import React from 'react';
 import Teaser from './';
+import TeaserFlyTitle from './teaser-flytitle';
+import TeaserImage from './teaser-image';
+import TeaserLink from './teaser-link';
+import TeaserPublishDate from './teaser-publish-date';
+import TeaserSection from './teaser-section';
+import TeaserText from './teaser-text';
+import TeaserTitle from './teaser-title';
 
-const today = new Date();
+const enableMeta = true;
 export default (
-  <div>
-    <Teaser
-      image={{
-        src: 'http://cdn.static-economist.com/sites/default/files/imagecache/full-width/20151017_BLP560.jpg',
-        title: 'Just an image',
-      }}
-      section="International"
-      flyTitle="The UN, religion and development"
-      title="Faith and secular global bodies learn to live together"
-      dateTime={today}
-      text="THERE are many reasons why sceptics might find fault with the 17
+<Teaser publisher="The Empire" author="Darth Vader">
+  <TeaserLink href="http://www.someurl.com">
+    <TeaserImage
+      sources={[
+        { url: 'https://placehold.it/480x270', width: 240, height: 135, dppx: 2 },
+        { url: 'https://placehold.it/240x135', width: 240, height: 135, dppx: 1 },
+      ]}
+      alt="this is an image"
+    />
+    <TeaserSection>International</TeaserSection>
+    <TeaserFlyTitle meta={enableMeta}>The UN, religion and development</TeaserFlyTitle>
+    <TeaserTitle>Faith and secular global bodies learn to live together</TeaserTitle>
+    <TeaserPublishDate dateTime={new Date()} />
+    <TeaserText>
+      THERE are many reasons why sceptics might find fault with the 17
       Sustainable Development Goals, along with 169 associated targets, which
       the leaders of the world (including the pope) will adopt, with some fanfare,
       in New York this week. One problem, as a colleague has written, is that they
       are simply too numerous. As the French statesman Georges Clemenceau
-      for a new world order, were enough for the good Lord."
-      link={{
-        href: 'http://www.economist.com/blogs/erasmus/2015/09/un-religion-and-development-0',
-      }}
-      itemType="http://schema.org/BlogPosting"
-      itemProp="blogPost"
-      extraGroupText={(<em className="example-extra">You can add extra items to the text group</em>)}
-    />
-  </div>
+      for a new world order, were enough for the good Lord.
+    </TeaserText>
+    <em className="example-extra">You can add extra items to the text group</em>
+  </TeaserLink>
+</Teaser>
 );
