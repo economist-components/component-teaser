@@ -10,7 +10,7 @@ export default function Teaser({
   itemType = 'http://schema.org/Article',
   itemProp = 'article',
   children,
-  publisher = 'Economist',
+  publisher = 'The Economist',
 }) {
   return (
     <article
