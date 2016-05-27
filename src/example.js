@@ -10,7 +10,7 @@ import TeaserTitle from './teaser-title';
 
 const enableMeta = true;
 export default (
-<Teaser>
+<Teaser publisher="The Empire" author="Darth Vader">
   <TeaserLink href="http://www.someurl.com">
     <TeaserImage
       sources={[

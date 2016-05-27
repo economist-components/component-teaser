@@ -261,6 +261,7 @@ describe('Teaser', () => {
           itemProp="foo"
           itemType="bar"
           publisher="baz"
+          author="bing"
         >
           <TeaserImage
             sources={[
@@ -288,6 +289,7 @@ describe('Teaser', () => {
       teaser.should.have.attr('itemprop', 'foo');
       teaser.should.have.attr('itemtype', 'bar');
       teaser.find('.teaser__publisher').should.have.attr('content', 'baz');
+      teaser.find('.teaser__author').should.have.attr('content', 'bing');
     });
 
     it('renders children', () => {

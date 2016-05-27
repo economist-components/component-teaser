@@ -11,6 +11,7 @@ export default function Teaser({
   itemProp = 'article',
   children,
   publisher = 'The Economist',
+  author = 'The Economist',
 }) {
   return (
     <article
@@ -18,7 +19,8 @@ export default function Teaser({
       itemScope itemType={itemType} itemProp={itemProp}
       role="article"
     >
-      <meta className="teaser__publisher" itemProp="publisher author" content={publisher} />
+      <meta className="teaser__publisher" itemProp="publisher" content={publisher} />
+      <meta className="teaser__author" itemProp="author" content={author} />
       {children}
     </article>
   );
@@ -27,6 +29,7 @@ export default function Teaser({
 if (process.env.NODE_ENV !== 'production') {
   Teaser.propTypes = {
     publisher: React.PropTypes.string,
+    author: React.PropTypes.string,
     className: React.PropTypes.string,
     itemType: React.PropTypes.string,
     itemProp: React.PropTypes.string,
