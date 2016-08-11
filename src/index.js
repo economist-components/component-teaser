@@ -1,9 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import TeaserImage from './teaser-image';
-import TeaserLink from './teaser-link';
-import TeaserPublishDate from './teaser-publish-date';
-import TeaserTitle from './teaser-title';
 
 export default function Teaser({
   className,
