@@ -10,7 +10,7 @@ export default function Teaser({
   author = 'The Economist',
 }) {
   return (
-    <article
+    <li
       className={classNames('teaser', className)}
       itemScope itemType={itemType} itemProp={itemProp}
       role="article"
@@ -18,7 +18,7 @@ export default function Teaser({
       <meta className="teaser__publisher" itemProp="publisher" content={publisher} />
       <meta className="teaser__author" itemProp="author" content={author} />
       {children}
-    </article>
+    </li>
   );
 }
 
