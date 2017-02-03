@@ -276,8 +276,8 @@ describe('Teaser', () => {
       teaser = rendered.find('.teaser');
     });
 
-    it('renders a top level div.teaser', () => {
-      teaser.should.have.tagName('article');
+    it('renders a top level li.teaser', () => {
+      teaser.should.have.tagName('li');
       teaser.should.have.className('teaser');
     });
 
