@@ -8,10 +8,11 @@ export default function Teaser({
   children,
   publisher = 'The Economist',
   author = 'The Economist',
+  classNamePrefix = '',
 }) {
   return (
     <article
-      className={classNames('teaser', className)}
+      className={classNames(`${ classNamePrefix }teaser`, className)}
       itemScope itemType={itemType} itemProp={itemProp}
       role="article"
     >
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
     publisher: React.PropTypes.string,
     author: React.PropTypes.string,
     className: React.PropTypes.string,
+    classNamePrefix: React.PropTypes.string,
     itemType: React.PropTypes.string,
     itemProp: React.PropTypes.string,
     children: React.PropTypes.node,
