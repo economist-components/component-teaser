@@ -12,6 +12,7 @@ export default function Teaser({
 }) {
   return (
     <article
+      aria-label="Article Teaser"
       className={classNames(`teaser${ classNameModifier }`, className)}
       itemScope itemType={itemType} itemProp={itemProp}
       role="article"
