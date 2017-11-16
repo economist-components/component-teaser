@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import moment from 'moment-timezone';
 
@@ -32,7 +33,7 @@ export default function TeaserPublishDate({
 
 if (process.env.NODE_ENV !== 'production') {
   TeaserPublishDate.propTypes = {
-    className: React.PropTypes.string,
+    className: PropTypes.string,
     dateTime(props, propName, componentName) {
       if (Number.isNaN(new Date(props[propName]))) {
         return new Error(`Invalid prop ${ propName } supplied to ${ componentName
@@ -40,7 +41,7 @@ if (process.env.NODE_ENV !== 'production') {
       }
       return null;
     },
-    format: React.PropTypes.string,
-    meta: React.PropTypes.bool,
+    format: PropTypes.string,
+    meta: PropTypes.bool,
   };
 }

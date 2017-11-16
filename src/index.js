@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export default function Teaser({
   className,
@@ -26,12 +27,12 @@ export default function Teaser({
 
 if (process.env.NODE_ENV !== 'production') {
   Teaser.propTypes = {
-    publisher: React.PropTypes.string,
-    author: React.PropTypes.string,
-    className: React.PropTypes.string,
-    classNameModifier: React.PropTypes.string,
-    itemType: React.PropTypes.string,
-    itemProp: React.PropTypes.string,
-    children: React.PropTypes.node,
+    publisher: PropTypes.string,
+    author: PropTypes.string,
+    className: PropTypes.string,
+    classNameModifier: PropTypes.string,
+    itemType: PropTypes.string,
+    itemProp: PropTypes.string,
+    children: PropTypes.node,
   };
 }

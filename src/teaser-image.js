@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Picture from '@economist/component-picture';
 import classNames from 'classnames';
 
@@ -18,10 +19,10 @@ export default function TeaserImage({
 
 if (process.env.NODE_ENV !== 'production') {
   TeaserImage.propTypes = {
-    className: React.PropTypes.string,
-    sources: React.PropTypes.arrayOf(
-      React.PropTypes.object,
+    className: PropTypes.string,
+    sources: PropTypes.arrayOf(
+      PropTypes.object,
     ).isRequired,
-    alt: React.PropTypes.string,
+    alt: PropTypes.string,
   };
 }
