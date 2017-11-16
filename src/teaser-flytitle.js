@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export default function TeaserFlyTitle({
   className,
@@ -23,8 +24,8 @@ export default function TeaserFlyTitle({
 
 if (process.env.NODE_ENV !== 'production') {
   TeaserFlyTitle.propTypes = {
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
-    meta: React.PropTypes.bool,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    meta: PropTypes.bool,
   };
 }

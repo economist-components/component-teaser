@@ -8,11 +8,14 @@ import TeaserSection from '../src/teaser-section';
 import TeaserText from '../src/teaser-text';
 import TeaserTitle from '../src/teaser-title';
 import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { mount } from 'enzyme';
+Enzyme.configure({ adapter: new Adapter() });
 chai.use(chaiEnzyme()).should();
 
+const { mount } = Enzyme;
 describe('TeaserFlyTitle', () => {
   it('renders a React element', () => {
     React.isValidElement(<TeaserFlyTitle />).should.equal(true);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default function TeaserLink({
@@ -28,9 +29,9 @@ export default function TeaserLink({
 
 if (process.env.NODE_ENV !== 'production') {
   TeaserLink.propTypes = {
-    className: React.PropTypes.string,
-    children: React.PropTypes.node,
-    href: React.PropTypes.string,
-    meta: React.PropTypes.bool,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    href: PropTypes.string,
+    meta: PropTypes.bool,
   };
 }
